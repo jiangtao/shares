@@ -1,0 +1,24 @@
+{
+  "name": "shares",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jtHwong/shares.git"
+  },
+  "keywords": [
+    "shares",
+    "based",
+    "on",
+    "nodeppt"
+  ],
+  "author": "321jiangtao@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jtHwong/shares/issues"
+  },
+  "homepage": "https://github.com/jtHwong/shares#readme"
+}
