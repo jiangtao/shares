@@ -7,7 +7,7 @@ files: /css/demo.css,/img
 [slide]
 
 # 使用webpack前端工作流搭建
-## 分享人：江涛 (黑卡前端组)
+## 分享人：江涛 
 
 [slide]
 
