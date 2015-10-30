@@ -4,7 +4,6 @@ var node_modules      = path.resolve(__dirname, 'node_modules');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var DEPLOY            = process.env.webpack_deploy;
-DEPLOY = false;
 var webpackConfig = {
 	entry: {
 		app:     path.resolve(__dirname, 'app/main.js'),
