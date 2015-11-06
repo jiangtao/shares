@@ -1,6 +1,4 @@
 .DS_Store
-node_modules
-.idea
 img2
-
-doc
+.idea
+node_modules
