@@ -1,0 +1,14 @@
+.slides .slide{
+	background-color: black !important;
+}
+.slides .slide code{
+    font-size:20px;
+}
+.showImg{
+	list-style: none;
+}
+.img{
+	float: left;
+	width: 300px;
+	text-align: center;
+}
