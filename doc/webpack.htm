@@ -27,9 +27,9 @@
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
 <h1>什么是webpack</h1>
 <ul>
+<li>具有Grunt、Gulp对于静态资源自动化构建的能力</li>
 <li>静态资源打包工具</li>
-<li>兼容多种JS书写规范，具有更强大的JS模块化功能</li>
-<li>具有Grunt、Gulp对于静态资源自动化构建的能力<blockquote>
+<li>兼容多种JS书写规范，具有更强大的JS模块化功能<blockquote>
 <p>Webpack是一个出色的前端自动化构建工具、模块化工具、资源管理工具</p>
 </blockquote>
 </li>
@@ -37,21 +37,12 @@
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>为什么要用webpack ?</h1>
-<ul class="moveIn">
-<li>js模块规范复杂化 - AMD、CommonJS、ES6</li>
-<li>项目中资源多样性和依赖性 - js、css、png、svg、sass、less、jade等</li>
-<li>开发与线上文件一致性</li>
-</ul>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
 <h1>webpack的特性 ?</h1>
 <ul class="moveIn">
+<li>仅需要对应的加载器即可支持，配置简单，关注文件依赖关系即可</li>
 <li>用于处理文件依赖分析和进行打包，让程序员可以专注组件开发</li>
 <li>兼容各种JS模块规范 - AMD、CommonJS、ES6</li>
 <li>对各种资源都可支持打包 css、js/jsx、img、svg、fonts等</li>
-<li>仅需要对应的加载器即可支持，配置简单，关注文件依赖关系即可</li>
 <li>可打包成多个模块，实现公共模块、独立模块按需加载</li>
 <li>支持内存打包和实时打包生成文件，性能更快</li>
 </ul>
@@ -71,25 +62,24 @@
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
+<h2>webpack 基本命令</h2>
+<ul>
+<li><code>webpack</code>         // 最基本的启动webpack方法</li>
+<li><code>webpack -w</code>      // 提供watch方法，实时进行打包更新</li>
+<li><code>webpack -p</code>      // 对打包后的文件进行压缩</li>
+<li><code>webpack -d</code>      // 提供source map，方便调试。</li>
+<li><code>webpack --confg</code> // 以某个config作为打包</li>
+<li><code>webpack --help</code>  // 更多命令</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <h2>webpack 使用和配置</h2>
 <ul>
 <li>node.js API使用：<pre><code class="javascript">var webpack = require(&#39;webpack&#39;);
 </code></pre>
 </li>
 <li>默认使用当前目录的webpack.config.js作为配置文件。可以根据不同的需求配置不同的config</li>
-</ul>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<h2>webpack 基本命令</h2>
-<ul>
-<li><code>webpack</code>    // 最基本的启动webpack方法</li>
-<li><code>webpack -w</code> // 提供watch方法，实时进行打包更新</li>
-<li><code>webpack -p</code> // 对打包后的文件进行压缩</li>
-<li><code>webpack -d</code> // 提供source map，方便调试。</li>
-<li><code>webpack --colors</code> // 输出结果带彩色，比如：会用红色显示耗时较长的步骤</li>
-<li><code>webpack --profile</code> // 输出性能数据，可以看到每一步的耗时</li>
-<li><code>webpack --display-modules</code> // 默认情况下 node_modules 下的模块会被隐藏，加上这个参数可以显示这些被隐藏的模块</li>
 </ul>
 
 </article></section></slide>
@@ -118,10 +108,7 @@
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
 <h2>复杂的配置---公共文件提取</h2>
-<ul>
-<li>将多个页面的公用模块独立打包，从而可以利用浏览器缓存机制来提高页面加载效率</li>
-<li>减少页面初次加载时间，只有当某功能被用到时，才去动态的加载</li>
-</ul>
+<p>*使用了一个 CommonsChunkPlugin 的插件，它用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用</p>
 <pre><code class="javascript">var CommonsChunkPlugin = require(&quot;webpack/lib/optimize/CommonsChunkPlugin&quot;);
 module.exports = {
   entry: { a: &quot;./a&quot;, b: &quot;./b&quot; },
@@ -129,33 +116,9 @@ module.exports = {
   plugins: [ new CommonsChunkPlugin(&quot;common.js&quot;) ]
 }
 </code></pre>
-<pre><code class="javascript">&lt;script src=&quot;common.js&quot;&gt;&lt;/script&gt;
+<pre><code class="html">&lt;script src=&quot;common.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;a.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;b.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<h2>复杂的配置</h2>
-<ul>
-<li>可以选择对应的文件生成公用模块，不同页面加载不同模块</li>
-</ul>
-<pre><code class="javascript">module.exports = {
-    entry: {
-        p1: &quot;./page1&quot;,
-        p2: &quot;./page2&quot;,
-        p3: &quot;./page3&quot;,
-        ap1: &quot;./admin/page1&quot;,
-        ap2: &quot;./admin/page2&quot;
-    },
-    output: {
-        filename: &quot;[name].js&quot;
-    },
-    plugins: [
-        new CommonsChunkPlugin(&quot;admin-commons.js&quot;, [&quot;ap1&quot;, &quot;ap2&quot;]),
-        new CommonsChunkPlugin(&quot;commons.js&quot;, [&quot;p1&quot;, &quot;p2&quot;, &quot;admin-commons.js&quot;])
-    ]
-};
 </code></pre>
 
 </article></section></slide>
@@ -176,6 +139,30 @@ module.exports = {
           moment: &quot;moment/min/moment-with-locales.min.js&quot;
       }
   }
+</code></pre>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>模块加载器</h2>
+<ul>
+<li>模块：静态的文件，比如：JavaScript，CSS，LESS，TypeScript，JSX，CoffeeScript，图片等等</li>
+<li>文件配置： 通过正则表达式对文件名进行匹配</li>
+<li>对于不同的模块有其对应的模块加载器，它们可以进行串联</li>
+</ul>
+<pre><code class="javascript">module: {
+    loaders: [{
+        test: /\.less/,
+        loader:  &#39;style-loader!css-loader!less-loader&#39;
+    }, {
+      test: /\.(png|jpe?g)$/,
+      loader: &#39;url-loader?limit=10000&amp;name=build/[name].[ext]&#39;
+    }]
+}
+</code></pre>
+<ul>
+<li>require()还支持在资源path前面指定loader，即require(![loaders list]![source path])形式<pre><code class="javascript">require(“style!css!less!./mystyles.less”);
 </code></pre>
 </li>
 </ul>
@@ -219,30 +206,6 @@ module.exports = {
 <ul>
 <li>对于一个大的web应用把所有代码放到一个文件中是很低效的。特别是如果有些代码块只是在特定环境下需要。</li>
 <li>webpack可以通过智能分析，将代码库分解成不同的chunks，可以提取公共部分，可以根据‘需求’拆分chunk，实现按需加载chunk。</li>
-</ul>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<h2>模块加载器</h2>
-<ul>
-<li>模块：静态的文件，比如：JavaScript，CSS，LESS，TypeScript，JSX，CoffeeScript，图片等等</li>
-<li>文件配置： 通过正则表达式对文件名进行匹配</li>
-<li>对于不同的模块有其对应的模块加载器，它们可以进行串联</li>
-</ul>
-<pre><code class="javascript">module: {
-    loaders: [{
-        test: /\.less/,
-        loader:  &#39;style-loader!css-loader!less-loader&#39;
-    }, {
-      test: /\.(png|jpe?g)$/,
-      loader: &#39;url-loader?limit=10000&amp;name=build/[name].[ext]&#39;
-    }]
-}
-</code></pre>
-<ul>
-<li>require()还支持在资源path前面指定loader，即require(![loaders list]![source path])形式<pre><code class="javascript">require(“style!css!less!./mystyles.less”);
-</code></pre>
-</li>
 </ul>
 
 </article></section></slide>
@@ -308,54 +271,6 @@ document.body.appendChild(img);
 </code></pre>
 </li>
 </ul>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<h2>双服务器模式</h2>
-<ul>
-<li>配置文件做如下修改<pre><code class="javascript">entry: [
-  &#39;./src/page/main.js&#39;,
-  &#39;webpack/hot/dev-server&#39;,
-  &#39;webpack-dev-server/client?http://10.16.15.199:8080&#39;
-]
-</code></pre>
-<pre><code class="javascript">output: {
-  path: __dirname,
-  filename: &#39;[name].js&#39;,
-  publicPath: &quot;http://10.16.15.199:8080/assets/&quot;
-}
-</code></pre>
-<pre><code class="javascript">plugins: [
-  new webpack.HotModuleReplacementPlugin()
-]
-</code></pre>
-</li>
-</ul>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<h2>webpack-dev-middleware</h2>
-<ul>
-<li>它是webpack的一个中间件</li>
-<li>只能在开发环境中使用</li>
-<li>可以实现在内存中实时打包生成虚拟文件，在页面中使用</li>
-<li>它有两种模式：watch mode (default)和lazy mode</li>
-</ul>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<pre><code class="javascript">var webpackDevMiddleware = require(&quot;webpack-dev-middleware&quot;);
-var webpack = require(&quot;webpack&quot;);
-
-var compiler = webpack({
-    // configuration
-    output: { path: &#39;/&#39; }
-});
-
-app.use(webpackDevMiddleware(compiler, {
-    // options
-}));
-</code></pre>
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
