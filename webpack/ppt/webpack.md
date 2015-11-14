@@ -65,6 +65,8 @@ var webpack = require('webpack');
 * 默认使用当前目录的webpack.config.js作为配置文件。可以根据不同的需求配置不同的config
 
 
+[slide]
+
 ## webpack 基本命令
 
 * `webpack`    // 最基本的启动webpack方法

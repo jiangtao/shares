@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+      "doc": "nodeppt generate ./webpack/ppt/webpack.md -a -o ./doc"
   },
   "repository": {
     "type": "git",
