@@ -1,6 +1,6 @@
 title: 使用webpack前端工作流搭建
 speaker: 江涛
-url: https://github.com/jtHwong/jtHwong.github.io/shares/webpack
+url: https://jthwong.github.io/shares/doc/webpack.htm
 transition: card
 files: /css/demo.css,/img
 
@@ -13,27 +13,20 @@ files: /css/demo.css,/img
 
 # 什么是webpack
 
+* 具有Grunt、Gulp对于静态资源自动化构建的能力
 * 静态资源打包工具
 * 兼容多种JS书写规范，具有更强大的JS模块化功能
-* 具有Grunt、Gulp对于静态资源自动化构建的能力
 > Webpack是一个出色的前端自动化构建工具、模块化工具、资源管理工具
 
-[slide]
-
-# 为什么要用webpack ?
-
-* js模块规范复杂化 - AMD、CommonJS、ES6 {:&.moveIn}
-* 项目中资源多样性和依赖性 - js、css、png、svg、sass、less、jade等
-* 开发与线上文件一致性
 
 [slide]
 
 # webpack的特性 ?
 
-* 用于处理文件依赖分析和进行打包，让程序员可以专注组件开发 {:&.moveIn}
+* 仅需要对应的加载器即可支持，配置简单，关注文件依赖关系即可 {:&.moveIn}
+* 用于处理文件依赖分析和进行打包，让程序员可以专注组件开发 
 * 兼容各种JS模块规范 - AMD、CommonJS、ES6
 * 对各种资源都可支持打包 css、js/jsx、img、svg、fonts等
-* 仅需要对应的加载器即可支持，配置简单，关注文件依赖关系即可
 * 可打包成多个模块，实现公共模块、独立模块按需加载
 * 支持内存打包和实时打包生成文件，性能更快
 
@@ -56,6 +49,17 @@ files: /css/demo.css,/img
 
 [slide]
 
+## webpack 基本命令
+
+* `webpack`         // 最基本的启动webpack方法
+* `webpack -w`      // 提供watch方法，实时进行打包更新
+* `webpack -p`      // 对打包后的文件进行压缩
+* `webpack -d`      // 提供source map，方便调试。
+* `webpack --confg` // 以某个config作为打包
+* `webpack --help`  // 更多命令
+
+[slide]
+
 ## webpack 使用和配置
 
 * node.js API使用：
@@ -63,19 +67,6 @@ files: /css/demo.css,/img
 var webpack = require('webpack');
 ```
 * 默认使用当前目录的webpack.config.js作为配置文件。可以根据不同的需求配置不同的config
-
-
-[slide]
-
-## webpack 基本命令
-
-* `webpack`    // 最基本的启动webpack方法
-* `webpack -w` // 提供watch方法，实时进行打包更新
-* `webpack -p` // 对打包后的文件进行压缩
-* `webpack -d` // 提供source map，方便调试。
-* `webpack --colors` // 输出结果带彩色，比如：会用红色显示耗时较长的步骤
-* `webpack --profile` // 输出性能数据，可以看到每一步的耗时
-* `webpack --display-modules` // 默认情况下 node_modules 下的模块会被隐藏，加上这个参数可以显示这些被隐藏的模块
 
 
 [slide]
@@ -107,8 +98,7 @@ module.exports = {
 
 ##  复杂的配置---公共文件提取
 
-*  将多个页面的公用模块独立打包，从而可以利用浏览器缓存机制来提高页面加载效率
-*  减少页面初次加载时间，只有当某功能被用到时，才去动态的加载
+*使用了一个 CommonsChunkPlugin 的插件，它用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用
 
 ```javascript
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
@@ -119,35 +109,12 @@ module.exports = {
 }
 ```
 
-```javascript
+```html
 <script src="common.js"></script>
 <script src="a.js"></script>
 <script src="b.js"></script>
 ```
-[slide]
 
-##  复杂的配置
-
-*  可以选择对应的文件生成公用模块，不同页面加载不同模块
-
-```javascript
-module.exports = {
-    entry: {
-        p1: "./page1",
-        p2: "./page2",
-        p3: "./page3",
-        ap1: "./admin/page1",
-        ap2: "./admin/page2"
-    },
-    output: {
-        filename: "[name].js"
-    },
-    plugins: [
-        new CommonsChunkPlugin("admin-commons.js", ["ap1", "ap2"]),
-        new CommonsChunkPlugin("commons.js", ["p1", "p2", "admin-commons.js"])
-    ]
-};
-```
 [slide]
 
 ## 有用的配置项
@@ -170,6 +137,32 @@ module.exports = {
         }
     }
     ```
+
+
+[slide]
+
+## 模块加载器
+
+*  模块：静态的文件，比如：JavaScript，CSS，LESS，TypeScript，JSX，CoffeeScript，图片等等
+*  文件配置： 通过正则表达式对文件名进行匹配
+*  对于不同的模块有其对应的模块加载器，它们可以进行串联
+
+```javascript
+module: {
+    loaders: [{
+        test: /\.less/,
+        loader:  'style-loader!css-loader!less-loader'
+    }, {
+      test: /\.(png|jpe?g)$/,
+      loader: 'url-loader?limit=10000&name=build/[name].[ext]'
+    }]
+}
+```
+* require()还支持在资源path前面指定loader，即require(![loaders list]![source path])形式
+```javascript
+require(“style!css!less!./mystyles.less”);
+```
+
 
 [slide]
 
@@ -211,30 +204,6 @@ require.ensure([], function(require) {
 
 * 对于一个大的web应用把所有代码放到一个文件中是很低效的。特别是如果有些代码块只是在特定环境下需要。
 * webpack可以通过智能分析，将代码库分解成不同的chunks，可以提取公共部分，可以根据‘需求’拆分chunk，实现按需加载chunk。
-
-[slide]
-
-## 模块加载器
-
-*  模块：静态的文件，比如：JavaScript，CSS，LESS，TypeScript，JSX，CoffeeScript，图片等等
-*  文件配置： 通过正则表达式对文件名进行匹配
-*  对于不同的模块有其对应的模块加载器，它们可以进行串联
-
-```javascript
-module: {
-    loaders: [{
-        test: /\.less/,
-        loader:  'style-loader!css-loader!less-loader'
-    }, {
-      test: /\.(png|jpe?g)$/,
-      loader: 'url-loader?limit=10000&name=build/[name].[ext]'
-    }]
-}
-```
-* require()还支持在资源path前面指定loader，即require(![loaders list]![source path])形式
-```javascript
-require(“style!css!less!./mystyles.less”);
-```
 
 [slide]
 
@@ -306,54 +275,6 @@ plugins: [
     webpack-dev-server --content-base build/ --hot
     ```
 
-[slide]
-
-## 双服务器模式    
-
-* 配置文件做如下修改
-```javascript
- entry: [
-    './src/page/main.js',
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://10.16.15.199:8080'
-  ]
-```
-```javascript
-  output: {
-    path: __dirname,
-    filename: '[name].js',
-    publicPath: "http://10.16.15.199:8080/assets/"
-  }
-```
-```javascript
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
-```
-[slide]
-
-##  webpack-dev-middleware
-
-*  它是webpack的一个中间件
-*  只能在开发环境中使用
-*  可以实现在内存中实时打包生成虚拟文件，在页面中使用
-*  它有两种模式：watch mode (default)和lazy mode
-
-[slide]
-
-```javascript
-var webpackDevMiddleware = require("webpack-dev-middleware");
-var webpack = require("webpack");
-
-var compiler = webpack({
-    // configuration
-    output: { path: '/' }
-});
-
-app.use(webpackDevMiddleware(compiler, {
-    // options
-}));
-```
 [slide]
 
 ## 参考资料
