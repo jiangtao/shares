@@ -1,6 +1,6 @@
 title: 使用webpack前端工作流搭建
 speaker: 江涛
-url: https://jthwong.github.io/shares/doc/webpack.htm
+url: http://jthwong.github.io/shares/doc/webpack.htm
 transition: card
 files: /css/demo.css,/img
 

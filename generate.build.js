@@ -8,7 +8,7 @@ var shell_target = "find . -name '*.md' | grep 'ppt' | xargs egrep '^title|^url'
 var execSync = child_process.execSync;
 
 var targetList = execSync(shell_target, { encoding: 'utf8' });
-var content = '---\n###关于web和前端的一些分享\n\n* npm install -g nodeppt\n* nodeppt start -p 9999 -d webpack\n\n### 目录\n';
+var content = '---\n###关于web和前端的一些分享\n\n* npm install -g nodeppt\n* nodeppt start -p 9999 -d `target_dir`\n\n### 目录\n';
 var infoList = targetList.split('\r\n').filter(function (item) {
     return item.length != 0;
 });
