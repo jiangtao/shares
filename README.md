@@ -1,5 +1,5 @@
 ---
-###关于端的一些总结和分享
+###关于前端的一些总结和分享
 
 * npm install -g nodeppt
 * nodeppt start -p 9999 -d `target_dir`

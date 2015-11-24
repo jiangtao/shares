@@ -7,7 +7,7 @@ const shell_target  = "find . -name '*.md' | grep 'ppt' | xargs egrep '^title|^u
 const execSync      = child_process.execSync;
 
 let targetList = execSync(shell_target, { encoding: 'utf8' });
-let content = '---\n###关于端的一些总结和分享\n\n* npm install -g nodeppt\n* nodeppt start -p 9999 -d `target_dir`\n\n### 目录\n';
+let content = '---\n###关于前端的一些总结和分享\n\n* npm install -g nodeppt\n* nodeppt start -p 9999 -d `target_dir`\n\n### 目录\n';
 let infoList = targetList.split('\r\n').filter((item) => item.length != 0 );
 let len = infoList.length;
 let getInfo = (str) =>  {
