@@ -25,6 +25,5 @@
   },
   "homepage": "https://github.com/jtHwong/shares#readme",
   "devDependencies": {
-    "readline": "^1.2.1"
   }
 }
