@@ -1,0 +1,13 @@
+$fontSize: 14px;
+body {
+  margin:0;
+  font-size: $fontSize;
+  background-color:#eee;
+}
+
+.avatar {
+  display: block;
+  background: url(../img/avatar.jpeg) no-repeat;
+  width:320px;
+  height: 320px;
+}
