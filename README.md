@@ -6,4 +6,4 @@
 
 ### 目录
 
-* [ 使用webpack前端工作流搭建]( http://jthwong.github.io/shares/doc/webpack.htm)
+* [ 搭建ES6/7工作流搭建]( http://jthwong.github.io/shares/doc/webpack.htm)

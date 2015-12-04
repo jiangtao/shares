@@ -1,4 +1,4 @@
-title: 使用webpack前端工作流搭建
+title: 搭建ES6/7工作流搭建
 speaker: 江涛
 url: http://jthwong.github.io/shares/doc/webpack.htm
 transition: card
@@ -6,7 +6,7 @@ files: /css/zhufeng.css,/img
 
 [slide]
 
-# 使用webpack前端工作流搭建
+# 搭建ES6/7工作流搭建
 ## 分享人：江涛 
 
 [slide]
