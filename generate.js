@@ -16,7 +16,7 @@ let content = `---
 let footer = `
 
 ###Contact
-[mailto:321jiangtao@gmail.com](321jiangtao#gmail.com)
+[321jiangtao#gmail.com](mailto:321jiangtao@gmail.com)
 `;
 let infoList = targetList.split('\r\n').filter((item) => item.length != 0 );
 let len = infoList.length;
@@ -37,7 +37,8 @@ if (len % 2 == 0) {
     console.warn('please check your infoList title url');
 }
 content += footer;
+
 fs.writeFile('./README.md', content, {encoding: 'utf8'}, (err) => {
     if(err) throw err;
     console.log('README.md generate successfully');
-})
+});
