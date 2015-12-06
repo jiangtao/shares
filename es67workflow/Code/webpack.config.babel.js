@@ -5,19 +5,14 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 let node_modules = path.resolve(__dirname, 'node_modules');
 let DEPLOY = process.env.webpack_deploy;
 let entry = {
-    mobile: path.resolve(__dirname, 'app/mobile.js'),
+    mobile: path.resolve(__dirname, 'app/mobile.js')
 };
 let hotReload = true;
-if(hotReload){
-    for(let i in entry){
-        entry[i] = ['webpack-dev-server/client?http://localhost:3001', 'webpack/hot/dev-server', entry[i]];
-    }
-}
 let chunks = Object.keys(entry);
 let webpackConfig = {
     entry: entry,
     resolve: {
-        modulesDirectories: ["node_modules", "bower_components"],
+        modulesDirectories: ["node_modules", "bower_components"]
     },
     output: {
         path: path.resolve(__dirname, 'dist/js'),
@@ -43,7 +38,8 @@ let webpackConfig = {
                 removeComments: true
             }
         }),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.NoErrorsPlugin()
     ],
     module: {
         loaders: [{
@@ -65,7 +61,8 @@ let webpackConfig = {
         }, {
             test: /\.woff$/,
             loader: 'url-loader?limit=10240'
-        }]
+        }],
+        //noParse: [node_modules]
     }
 };
 

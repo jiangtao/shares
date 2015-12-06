@@ -1,6 +1,6 @@
 title: 搭建ES6/7工作流搭建
 speaker: 江涛
-url: http://jthwong.github.io/shares/doc/webpack.htm
+url: http://jthwong.github.io/shares/doc/es67workflow.htm
 transition: card
 files: /css/zhufeng.css,/img
 
@@ -9,18 +9,41 @@ files: /css/zhufeng.css,/img
 # 搭建ES6/7工作流搭建
 ## 分享人：江涛 
 
+
 [slide]
 
-# 什么是webpack
-
-* 具有Grunt、Gulp对于静态资源自动化构建的能力
-* 静态资源打包工具
-* 兼容多种JS书写规范，具有更强大的JS模块化功能
-> Webpack是一个出色的前端自动化构建工具、模块化工具、资源管理工具
+# 背景
+> 2015年6月，`ES2015`正式发布。无论 NodeJS 还是 Browser， 使用`ES2015`/`ES6`开发 提高开发效率。
 
 
 [slide]
 
+# 转码器和打包工具
+
+- [typescript](http://www.typescriptlang.org/)
+- [babel](http://babeljs.io/)
+- [webpack](https://github.com/webpack)
+- [gulp](http://gulpjs.com/)
+
+[slide]
+# 以 babel5.8.3 + webpack 为例
+
+[slide]
+# babel5.8.3安装
+```javascript
+npm install -g babel@5.8.3
+```
+
+[slide]
+# babel基本命令
+* `babel -w`      // 提供watch方
+* `babel -o`      // 输出到一个文件
+* `babel -d`      // 指定要编译的目录
+* `babel -s`      // 生成sourcemap
+* `babel --help`  // 更多命令
+
+
+[slide]
 # webpack的特性 ?
 
 * 仅需要对应的加载器即可支持，配置简单，关注文件依赖关系即可 {:&.moveIn}
@@ -29,7 +52,6 @@ files: /css/zhufeng.css,/img
 * 对各种资源都可支持打包 css、js/jsx、img、svg、fonts等
 * 可打包成多个模块，实现公共模块、独立模块按需加载
 * 支持内存打包和实时打包生成文件，性能更快
-
 
 [slide style="background-image:url('/img/webpack.jpg'); background-size: contain;"]
 
@@ -68,7 +90,6 @@ var webpack = require('webpack');
 ```
 * 默认使用当前目录的webpack.config.js作为配置文件。可以根据不同的需求配置不同的config
 
-
 [slide]
 
 ## Demo
@@ -93,6 +114,33 @@ module.exports = {
 ```
 *  其中entry参数定义了打包后的入口文件，数组中的所有文件会打包生成一个filename文件
 *  output参数定义了输出文件的位置
+
+
+[slide]
+
+## 模块加载器
+
+*  模块：静态的文件，比如：JavaScript，CSS，sass，TypeScript，JSX，CoffeeScript，图片等等
+*  文件配置： 通过正则表达式对文件名进行匹配
+*  对于不同的模块有其对应的模块加载器，它们可以进行串联
+
+```javascript
+module: {
+    loaders: [{
+        test: /\.s(a|c)ss$/,
+        loader:  'style-loader!css-loader!sass-loader'
+        }, {
+            test: /\.(png|jpe?g)$/,
+            loader: 'url-loader?limit=10000&name=build/[name].[ext]'
+        }]
+    }
+}
+```
+
+* require()还支持在资源path前面指定loader，即require(![loaders list]![source path])形式
+```javascript
+require(“style!css!sass!./mystyles.sass”);
+```
 
 [slide]
 
@@ -131,37 +179,12 @@ module.exports = {
 
     ```javascript
     resolve: {
-        extensions: ['.js', '.less', '.css'],
+        extensions: ['.js', '.sass', '.css'],
         alias: {
             moment: "moment/min/moment-with-locales.min.js"
         }
     }
     ```
-
-
-[slide]
-
-## 模块加载器
-
-*  模块：静态的文件，比如：JavaScript，CSS，LESS，TypeScript，JSX，CoffeeScript，图片等等
-*  文件配置： 通过正则表达式对文件名进行匹配
-*  对于不同的模块有其对应的模块加载器，它们可以进行串联
-
-```javascript
-module: {
-    loaders: [{
-        test: /\.less/,
-        loader:  'style-loader!css-loader!less-loader'
-    }, {
-      test: /\.(png|jpe?g)$/,
-      loader: 'url-loader?limit=10000&name=build/[name].[ext]'
-    }]
-}
-```
-* require()还支持在资源path前面指定loader，即require(![loaders list]![source path])形式
-```javascript
-require(“style!css!less!./mystyles.less”);
-```
 
 
 [slide]
@@ -172,38 +195,7 @@ require(“style!css!less!./mystyles.less”);
 *  AMD是模块异步加载并保证执行顺序---使用require实现兼容
 *  ES6中使用import实现模块的引入---使用Babel实现兼容
 
-在Webpack中推荐CommonJS方式去加载模块，这种方式语法更加简洁直观。
-
-[slide]
-
-## webpack内部实现命令不同
-
-*  require.ensure (CommonJs)
-```javascript
-require.ensure(["module-a", "module-b"], function(require) {
-    var a = require("module-a");
-    // ...
-});
-```
-*  require (AMD)
-```javascript
-require(["module-a", "module-b"], function(a, b) {
-    // ...
-});
-```
-*  require.include (request)
-```javascript
-require.ensure([], function(require) {
-    require.include("./file");
-    require("./file2");
-});
-```
-[slide]
-
-# code-splitting
-
-* 对于一个大的web应用把所有代码放到一个文件中是很低效的。特别是如果有些代码块只是在特定环境下需要。
-* webpack可以通过智能分析，将代码库分解成不同的chunks，可以提取公共部分，可以根据‘需求’拆分chunk，实现按需加载chunk。
+>在Webpack中推荐CommonJS方式去加载模块，这种方式语法更加简洁直观。
 
 [slide]
 
@@ -214,7 +206,7 @@ require.ensure([], function(require) {
 
     ```javascript
 
-    require('./myapp.less');
+    require('./myapp.sass');
     var myapp = require('./myapp.js');
 
     console.log(myapp);
@@ -256,40 +248,110 @@ plugins: [
 
 [slide]
 
-##  Webpack-dev-server 开发服务器
+# 自动提取资源生成html文件
 
-*  基于Node.js Express框架的轻量开发服务器
-*  静态资源Web服务器
-*  开发中会监听文件的变化实时打包
+- 指定配置，编译时候自动生成引入资源的html文件：
 
-对于简单静态页面或者仅依赖于独立服务的前端页面，都可以直接使用这个开发服务器进行开发。
+```javascript
+var HtmlWebpackPlugin = require('html-Webpack-plugin');
+...
+...
+
+new HtmlWebpackPlugin({
+    template: 'app/custom.html',
+    filename: '../custom.html',
+    chunks: ['vendors', 'mobile'],
+    inject: true,
+    minify: {
+        minifyJS: true,
+        minifyCSS: true,
+        collapseWhitespace: true,
+        removeComments: true
+    }
+}
+```
 
 [slide]
+# 一个综合的例子
+```javascript
+import path from 'path';
+import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+let node_modules = path.resolve(__dirname, 'node_modules');
+let DEPLOY = process.env.webpack_deploy;
+let entry = {
+    mobile: path.resolve(__dirname, 'app/mobile.js')
+};
+let hotReload = true;
+let chunks = Object.keys(entry);
+let webpackConfig = {
+    entry: entry,
+    resolve: {
+        modulesDirectories: ["node_modules", "bower_components"]
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist/js'),
+        filename: '[name].js?v=[hash:5]',
+        publicPath: !DEPLOY ? 'js' : 'http://www.imjiangtao.com'
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendors',
+            chunks: chunks,
+            minChunks: chunks.length
+        }),
+        new ExtractTextPlugin('../css/styles.css'),
+        new HtmlWebpackPlugin({
+            template: 'app/custom.html',
+            filename: '../custom.html',
+            chunks: ['vendors', 'mobile'],
+            inject: true,
+            minify: {
+                minifyJS: true,
+                minifyCSS: true,
+                collapseWhitespace: true,
+                removeComments: true
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.NoErrorsPlugin()
+    ],
+    module: {
+        loaders: [{
+            test: /\.jsx?$/,
+            loader: 'babel-loader',
+            query: {
+                //presets: ['es2015', 'stage-0', 'react'],
+                //plugins: ['transform-runtime']
+            }
+        }, {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract("style-loader?minimize", "css-loader?minimize")
+        }, {
+            test: /\.s(a|c)ss$/,
+            loader: ExtractTextPlugin.extract('style-loader', 'css?minimize', 'sass-loader')
+        }, {
+            test: /\.(png|jpe?g)$/,
+            loader: 'url-loader?limit=30000'
+        }, {
+            test: /\.woff$/,
+            loader: 'url-loader?limit=10240'
+        }],
+        //noParse: [node_modules]
+    }
+};
 
-*  Webpack开发服务器需要单独安装，同样是通过npm进行：
-    ```javascript
-    npm install -g webpack-dev-server
-    ```
-*  启动命令如下：
-    ```javascript
-    webpack-dev-server --content-base build/ --hot
-    ```
+export default webpackConfig;
+
+
+```
 
 [slide]
-
 ## 参考资料
 
 *  <a href="http://webpack.github.io/">webpack 官网</a>
-*  <a href="http://segmentfault.com/a/1190000002551952">Webpack 入门指迷</a>
-*  <a href="https://github.com/petehunt/webpack-howto"> Webpack how to</a>
-*  <a href="http://segmentfault.com/a/1190000003499526">基于webpack搭建前端工程解决方案探索</a>
-*  <a href="http://www.jianshu.com/p/8adf4c2bfa51">Webpack-dev-server结合后端服务器的热替换配置</a>
-*  <a href="https://fakefish.github.io/react-webpack-cookbook/">Webpack 和 React 小书</a>
+*  <a href="https://github.com/ampedandwired/html-webpack-plugin">html-webpack-plugin</a>
+*  <a href="https://github.com/kangax/html-minifier#options-quick-reference">html-minifier</a>
+*  <a href="http://webpack.github.io/docs/webpack-dev-server.html">webpack-dev-server</a>
 *  <a href="http://www.w3ctech.com/topic/1513">2015: 前端工具现状</a>
-
-[slide]
-
-# 联系方式
-
-*  **Email:** <a href="mailto:321jiangtao@gmail.com">321jiangtao@gmail.com</a>
-*  **Github:** <a href="https://github.com/jtHwong">https://github.com/jtHwong</a>

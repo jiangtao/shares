@@ -25,11 +25,12 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0",
     "webpack-vendor-chunk-plugin": "^1.0.0"
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --devtool --hot --content-base ./dist",
+    "HRM": "webpack-dev-server --devtool eval --progress --colors --hot --inline --port 9999 --content-base ./app",
     "deploy": "webpack -p "
   },
   "author": "",

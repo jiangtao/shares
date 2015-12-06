@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack": "nodeppt start -d  webpack/ppt -p 9000",
+    "es67workflow": "nodeppt start -d  es67workflow/ppt -p 9900",
     "generate": "./generate.build.js",
     "deploy": "babel generate.js -o generate.build.js && npm run generate"
   },

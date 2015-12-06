@@ -25,14 +25,40 @@
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>什么是webpack</h1>
-<ul>
-<li>具有Grunt、Gulp对于静态资源自动化构建的能力</li>
-<li>静态资源打包工具</li>
-<li>兼容多种JS书写规范，具有更强大的JS模块化功能<blockquote>
-<p>Webpack是一个出色的前端自动化构建工具、模块化工具、资源管理工具</p>
+<h1>背景</h1>
+<blockquote>
+<p>2015年6月，<code>ES2015</code>正式发布。无论 NodeJS 还是 Browser， 使用<code>ES2015</code>/<code>ES6</code>开发 提高开发效率。</p>
 </blockquote>
-</li>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>转码器和打包工具</h1>
+<ul>
+<li><a href="http://www.typescriptlang.org/" target="_blank">typescript</a></li>
+<li><a href="http://babeljs.io/" target="_blank">babel</a></li>
+<li><a href="https://github.com/webpack" target="_blank">webpack</a></li>
+<li><a href="http://gulpjs.com/" target="_blank">gulp</a></li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>以 babel5.8.3 + webpack 为例</h1>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>babel5.8.3安装</h1>
+<pre><code class="javascript">npm install -g babel@5.8.3
+</code></pre>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>babel基本命令</h1>
+<ul>
+<li><code>babel -w</code>      // 提供watch方</li>
+<li><code>babel -o</code>      // 输出到一个文件</li>
+<li><code>babel -d</code>      // 指定要编译的目录</li>
+<li><code>babel -s</code>      // 生成sourcemap</li>
+<li><code>babel --help</code>  // 更多命令</li>
 </ul>
 
 </article></section></slide>
@@ -107,6 +133,31 @@
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
+<h2>模块加载器</h2>
+<ul>
+<li>模块：静态的文件，比如：JavaScript，CSS，sass，TypeScript，JSX，CoffeeScript，图片等等</li>
+<li>文件配置： 通过正则表达式对文件名进行匹配</li>
+<li>对于不同的模块有其对应的模块加载器，它们可以进行串联</li>
+</ul>
+<pre><code class="javascript">module: {
+    loaders: [{
+        test: /\.s(a|c)ss$/,
+        loader:  &#39;style-loader!css-loader!sass-loader&#39;
+        }, {
+            test: /\.(png|jpe?g)$/,
+            loader: &#39;url-loader?limit=10000&amp;name=build/[name].[ext]&#39;
+        }]
+    }
+}
+</code></pre>
+<ul>
+<li>require()还支持在资源path前面指定loader，即require(![loaders list]![source path])形式<pre><code class="javascript">require(“style!css!sass!./mystyles.sass”);
+</code></pre>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
 <h2>复杂的配置---公共文件提取</h2>
 <p>*使用了一个 CommonsChunkPlugin 的插件，它用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用</p>
 <pre><code class="javascript">var CommonsChunkPlugin = require(&quot;webpack/lib/optimize/CommonsChunkPlugin&quot;);
@@ -134,35 +185,11 @@ module.exports = {
 </li>
 <li><p><code>resolve.alias</code> 是 Webpack 的一个配置项，它的作用是把用户的一个请求重定向到另一个路径</p>
 <pre><code class="javascript">resolve: {
-      extensions: [&#39;.js&#39;, &#39;.less&#39;, &#39;.css&#39;],
+      extensions: [&#39;.js&#39;, &#39;.sass&#39;, &#39;.css&#39;],
       alias: {
           moment: &quot;moment/min/moment-with-locales.min.js&quot;
       }
   }
-</code></pre>
-</li>
-</ul>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<h2>模块加载器</h2>
-<ul>
-<li>模块：静态的文件，比如：JavaScript，CSS，LESS，TypeScript，JSX，CoffeeScript，图片等等</li>
-<li>文件配置： 通过正则表达式对文件名进行匹配</li>
-<li>对于不同的模块有其对应的模块加载器，它们可以进行串联</li>
-</ul>
-<pre><code class="javascript">module: {
-    loaders: [{
-        test: /\.less/,
-        loader:  &#39;style-loader!css-loader!less-loader&#39;
-    }, {
-      test: /\.(png|jpe?g)$/,
-      loader: &#39;url-loader?limit=10000&amp;name=build/[name].[ext]&#39;
-    }]
-}
-</code></pre>
-<ul>
-<li>require()还支持在资源path前面指定loader，即require(![loaders list]![source path])形式<pre><code class="javascript">require(“style!css!less!./mystyles.less”);
 </code></pre>
 </li>
 </ul>
@@ -175,38 +202,9 @@ module.exports = {
 <li>AMD是模块异步加载并保证执行顺序---使用require实现兼容</li>
 <li>ES6中使用import实现模块的引入---使用Babel实现兼容</li>
 </ul>
+<blockquote>
 <p>在Webpack中推荐CommonJS方式去加载模块，这种方式语法更加简洁直观。</p>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<h2>webpack内部实现命令不同</h2>
-<ul>
-<li>require.ensure (CommonJs)<pre><code class="javascript">require.ensure([&quot;module-a&quot;, &quot;module-b&quot;], function(require) {
- var a = require(&quot;module-a&quot;);
- // ...
-});
-</code></pre>
-</li>
-<li>require (AMD)<pre><code class="javascript">require([&quot;module-a&quot;, &quot;module-b&quot;], function(a, b) {
- // ...
-});
-</code></pre>
-</li>
-<li>require.include (request)<pre><code class="javascript">require.ensure([], function(require) {
- require.include(&quot;./file&quot;);
- require(&quot;./file2&quot;);
-});
-</code></pre>
-</li>
-</ul>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>code-splitting</h1>
-<ul>
-<li>对于一个大的web应用把所有代码放到一个文件中是很低效的。特别是如果有些代码块只是在特定环境下需要。</li>
-<li>webpack可以通过智能分析，将代码库分解成不同的chunks，可以提取公共部分，可以根据‘需求’拆分chunk，实现按需加载chunk。</li>
-</ul>
+</blockquote>
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
@@ -214,7 +212,7 @@ module.exports = {
 <ul>
 <li>使用require方式直接引用静态文件</li>
 <li><p>CSS 被转化为 style 标签</p>
-<pre><code class="javascript">require(&#39;./myapp.less&#39;);
+<pre><code class="javascript">require(&#39;./myapp.sass&#39;);
  var myapp = require(&#39;./myapp.js&#39;);
 
  console.log(myapp);
@@ -252,45 +250,112 @@ document.body.appendChild(img);
 </code></pre>
 
 </article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<h2>Webpack-dev-server 开发服务器</h2>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>自动提取资源生成html文件</h1>
 <ul>
-<li>基于Node.js Express框架的轻量开发服务器</li>
-<li>静态资源Web服务器</li>
-<li>开发中会监听文件的变化实时打包</li>
+<li>指定配置，编译时候自动生成引入资源的html文件：</li>
 </ul>
-<p>对于简单静态页面或者仅依赖于独立服务的前端页面，都可以直接使用这个开发服务器进行开发。</p>
+<pre><code class="javascript">var HtmlWebpackPlugin = require(&#39;html-Webpack-plugin&#39;);
+...
+...
+
+new HtmlWebpackPlugin({
+    template: &#39;app/custom.html&#39;,
+    filename: &#39;../custom.html&#39;,
+    chunks: [&#39;vendors&#39;, &#39;mobile&#39;],
+    inject: true,
+    minify: {
+        minifyJS: true,
+        minifyCSS: true,
+        collapseWhitespace: true,
+        removeComments: true
+    }
+}
+</code></pre>
 
 </article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article>
-<ul>
-<li>Webpack开发服务器需要单独安装，同样是通过npm进行：<pre><code class="javascript">npm install -g webpack-dev-server
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>一个综合的例子</h1>
+<pre><code class="javascript">import path from &#39;path&#39;;
+import webpack from &#39;webpack&#39;;
+import ExtractTextPlugin from &#39;extract-text-webpack-plugin&#39;;
+import HtmlWebpackPlugin from &#39;html-webpack-plugin&#39;;
+let node_modules = path.resolve(__dirname, &#39;node_modules&#39;);
+let DEPLOY = process.env.webpack_deploy;
+let entry = {
+    mobile: path.resolve(__dirname, &#39;app/mobile.js&#39;)
+};
+let hotReload = true;
+let chunks = Object.keys(entry);
+let webpackConfig = {
+    entry: entry,
+    resolve: {
+        modulesDirectories: [&quot;node_modules&quot;, &quot;bower_components&quot;]
+    },
+    output: {
+        path: path.resolve(__dirname, &#39;dist/js&#39;),
+        filename: &#39;[name].js?v=[hash:5]&#39;,
+        publicPath: !DEPLOY ? &#39;js&#39; : &#39;http://www.imjiangtao.com&#39;
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: &#39;vendors&#39;,
+            chunks: chunks,
+            minChunks: chunks.length
+        }),
+        new ExtractTextPlugin(&#39;../css/styles.css&#39;),
+        new HtmlWebpackPlugin({
+            template: &#39;app/custom.html&#39;,
+            filename: &#39;../custom.html&#39;,
+            chunks: [&#39;vendors&#39;, &#39;mobile&#39;],
+            inject: true,
+            minify: {
+                minifyJS: true,
+                minifyCSS: true,
+                collapseWhitespace: true,
+                removeComments: true
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.NoErrorsPlugin()
+    ],
+    module: {
+        loaders: [{
+            test: /\.jsx?$/,
+            loader: &#39;babel-loader&#39;,
+            query: {
+                //presets: [&#39;es2015&#39;, &#39;stage-0&#39;, &#39;react&#39;],
+                //plugins: [&#39;transform-runtime&#39;]
+            }
+        }, {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract(&quot;style-loader?minimize&quot;, &quot;css-loader?minimize&quot;)
+        }, {
+            test: /\.s(a|c)ss$/,
+            loader: ExtractTextPlugin.extract(&#39;style-loader&#39;, &#39;css?minimize&#39;, &#39;sass-loader&#39;)
+        }, {
+            test: /\.(png|jpe?g)$/,
+            loader: &#39;url-loader?limit=30000&#39;
+        }, {
+            test: /\.woff$/,
+            loader: &#39;url-loader?limit=10240&#39;
+        }],
+        //noParse: [node_modules]
+    }
+};
+
+export default webpackConfig;
 </code></pre>
-</li>
-<li>启动命令如下：<pre><code class="javascript">webpack-dev-server --content-base build/ --hot
-</code></pre>
-</li>
-</ul>
 
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
 <h2>参考资料</h2>
 <ul>
 <li><a href="http://webpack.github.io/">webpack 官网</a></li>
-<li><a href="http://segmentfault.com/a/1190000002551952">Webpack 入门指迷</a></li>
-<li><a href="https://github.com/petehunt/webpack-howto"> Webpack how to</a></li>
-<li><a href="http://segmentfault.com/a/1190000003499526">基于webpack搭建前端工程解决方案探索</a></li>
-<li><a href="http://www.jianshu.com/p/8adf4c2bfa51">Webpack-dev-server结合后端服务器的热替换配置</a></li>
-<li><a href="https://fakefish.github.io/react-webpack-cookbook/">Webpack 和 React 小书</a></li>
+<li><a href="https://github.com/ampedandwired/html-webpack-plugin">html-webpack-plugin</a></li>
+<li><a href="https://github.com/kangax/html-minifier#options-quick-reference">html-minifier</a></li>
+<li><a href="http://webpack.github.io/docs/webpack-dev-server.html">webpack-dev-server</a></li>
 <li><a href="http://www.w3ctech.com/topic/1513">2015: 前端工具现状</a></li>
-</ul>
-
-</article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>联系方式</h1>
-<ul>
-<li><strong>Email:</strong> <a href="mailto:321jiangtao@gmail.com">321jiangtao@gmail.com</a></li>
-<li><strong>Github:</strong> <a href="https://github.com/jtHwong">https://github.com/jtHwong</a></li>
 </ul>
 
 </article></section></slide>
