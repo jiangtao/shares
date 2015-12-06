@@ -7,7 +7,11 @@ const shell_target  = "find . -name '*.md' | grep 'ppt' | xargs egrep '^title|^u
 const execSync      = child_process.execSync;
 
 let targetList = execSync(shell_target, { encoding: 'utf8' });
-let content = '---\n###关于前端的一些总结和分享\n\n* npm install -g nodeppt\n* nodeppt start -p 9999 -d `target_dir`\n\n### 目录\n';
+let content = `---
+###关于前端的一些总结和分享
+* npm install -g nodeppt
+* nodeppt start -p 9999 -d \`target_dir\`
+### 目录`;
 let infoList = targetList.split('\r\n').filter((item) => item.length != 0 );
 let len = infoList.length;
 let getInfo = (str) =>  {
@@ -20,7 +24,7 @@ if (len % 2 == 0) {
         execSync(`nodeppt generate ${match[0]}  -a -o ./doc`);
         console.log('nodeppt doc generate successfully');
         // generate dir
-        content += `\n* [${ match[1] }](${ getInfo(infoList[i+1])[1] })`;
+        content += `\n* [${ match[1].trim() }](${ getInfo(infoList[i+1])[1].trim() })`;
         i = 2 * (++i);
     }
 } else {
