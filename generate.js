@@ -13,6 +13,11 @@ let content = `---
 * nodeppt start -p 9999 -d \`target_dir\`
 
 ### 目录`;
+let footer = `
+
+###Contact
+[mailto:321jiangtao@gmail.com](321jiangtao#gmail.com)
+`;
 let infoList = targetList.split('\r\n').filter((item) => item.length != 0 );
 let len = infoList.length;
 let getInfo = (str) =>  {
@@ -31,6 +36,7 @@ if (len % 2 == 0) {
 } else {
     console.warn('please check your infoList title url');
 }
+content += footer;
 fs.writeFile('./README.md', content, {encoding: 'utf8'}, (err) => {
     if(err) throw err;
     console.log('README.md generate successfully');
