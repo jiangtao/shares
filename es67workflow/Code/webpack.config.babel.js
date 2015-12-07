@@ -5,7 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 let node_modules = path.resolve(__dirname, 'node_modules');
 let DEPLOY = process.env.webpack_deploy;
 let entry = {
-    mobile: path.resolve(__dirname, 'app/mobile.js')
+    mobile: path.resolve(__dirname, 'app/js/mobile.js')
 };
 let hotReload = true;
 let chunks = Object.keys(entry);
@@ -15,8 +15,8 @@ let webpackConfig = {
         modulesDirectories: ["node_modules", "bower_components"]
     },
     output: {
-        path: path.resolve(__dirname, 'dist/js'),
-        filename: '[name].js?v=[hash:5]',
+        path      : path.resolve(__dirname, 'dist/js'),
+        filename  : '[name].js?v=[hash:5]',
         publicPath: !DEPLOY ? 'js' : 'http://www.imjiangtao.com'
     },
     plugins: [
