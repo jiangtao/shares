@@ -15,8 +15,8 @@ let webpackConfig = {
         modulesDirectories: ["node_modules", "bower_components"]
     },
     output: {
-        path      : path.resolve(__dirname, 'dist/js'),
-        filename  : '[name].js?v=[hash:5]',
+        path: path.resolve(__dirname, 'dist/js'),
+        filename: '[name].js?v=[hash:5]',
         publicPath: !DEPLOY ? 'js' : 'http://www.imjiangtao.com'
     },
     plugins: [
@@ -45,6 +45,7 @@ let webpackConfig = {
         loaders: [{
             test: /\.jsx?$/,
             loader: 'babel-loader',
+            exclude: [node_modules],
             query: {
                 //presets: ['es2015', 'stage-0', 'react'],
                 //plugins: ['transform-runtime']
