@@ -54,7 +54,7 @@
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
 <h1>babel基本命令</h1>
 <ul>
-<li><code>babel -w</code>      // 提供watch方</li>
+<li><code>babel -w</code>      // 提供watch方法</li>
 <li><code>babel -o</code>      // 输出到一个文件</li>
 <li><code>babel -d</code>      // 指定要编译的目录</li>
 <li><code>babel -s</code>      // 生成sourcemap</li>
@@ -159,7 +159,9 @@
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article>
 <h2>复杂的配置---公共文件提取</h2>
-<p>*使用了一个 CommonsChunkPlugin 的插件，它用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用</p>
+<ul>
+<li>使用了一个 CommonsChunkPlugin 的插件，它用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用</li>
+</ul>
 <pre><code class="javascript">var CommonsChunkPlugin = require(&quot;webpack/lib/optimize/CommonsChunkPlugin&quot;);
 module.exports = {
   entry: { a: &quot;./a&quot;, b: &quot;./b&quot; },

@@ -36,7 +36,7 @@ npm install -g babel@5.8.3
 
 [slide]
 # babel基本命令
-* `babel -w`      // 提供watch方
+* `babel -w`      // 提供watch方法
 * `babel -o`      // 输出到一个文件
 * `babel -d`      // 指定要编译的目录
 * `babel -s`      // 生成sourcemap
@@ -146,7 +146,7 @@ require(“style!css!sass!./mystyles.sass”);
 
 ##  复杂的配置---公共文件提取
 
-*使用了一个 CommonsChunkPlugin 的插件，它用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用
+* 使用了一个 CommonsChunkPlugin 的插件，它用于提取多个入口文件的公共脚本部分，然后生成一个 common.js 来方便多页面之间进行复用
 
 ```javascript
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
