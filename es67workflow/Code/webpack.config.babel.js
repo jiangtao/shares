@@ -5,7 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 let node_modules = path.resolve(__dirname, 'node_modules');
 let DEPLOY = process.env.webpack_deploy;
 let entry = {
-    mobile: path.resolve(__dirname, 'app/js/mobile.js')
+    mobile: [path.resolve(__dirname, 'app/js/mobile.js')]
 };
 let hotReload = true;
 let chunks = Object.keys(entry);
@@ -38,7 +38,7 @@ let webpackConfig = {
                 removeComments: true
             }
         }),
-        new webpack.optimize.UglifyJsPlugin(),
+        //new webpack.optimize.UglifyJsPlugin(),
         new webpack.NoErrorsPlugin()
     ],
     module: {

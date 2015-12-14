@@ -346,12 +346,25 @@ export default webpackConfig;
 
 
 ```
+[slide]
+# 总结
+* webpack优势: `加载器配置`、`兼容多种模块规范`、`支持多种资源打包`、`独立模块和公共模块`
+* gulp: 利用nodejs管道，配置简单，插件众多，插件编写简单
+* webpack + gulp 构造ES6/7工作流
 
 [slide]
-## 参考资料
+# 参考资料
 
 *  <a href="http://webpack.github.io/">webpack 官网</a>
+*  <a href="http://gulpjs.com/">gulp</a>
+*  <a href="http://babeljs.io/">babel</a>
 *  <a href="https://github.com/ampedandwired/html-webpack-plugin">html-webpack-plugin</a>
 *  <a href="https://github.com/kangax/html-minifier#options-quick-reference">html-minifier</a>
 *  <a href="http://webpack.github.io/docs/webpack-dev-server.html">webpack-dev-server</a>
+*  <a href="http://es6.ruanyifeng.com/">ES6入门</a>
 *  <a href="http://www.w3ctech.com/topic/1513">2015: 前端工具现状</a>
+
+[slide]
+# Q & A
+* Email: <a href="javascript: void 0">321jiangtao@gmail.com</a>
+* Slide: <a href="http://jthwong.github.io/shares/doc/es67workflow.htm">搭建ES6/7工作流搭建</a>
