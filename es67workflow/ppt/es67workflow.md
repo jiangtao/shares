@@ -347,10 +347,11 @@ export default webpackConfig;
 
 ```
 [slide]
-# 总结
+# 总结和注意事项
 * webpack优势: `加载器配置`、`兼容多种模块规范`、`支持多种资源打包`、`独立模块和公共模块`
 * gulp: 利用nodejs管道，配置简单，插件众多，插件编写简单
 * webpack + gulp 构造ES6/7工作流
+* 使用babel和webpack时候注意版本。(注: 2015/12/13)
 
 [slide]
 # 参考资料
