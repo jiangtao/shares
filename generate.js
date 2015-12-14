@@ -12,13 +12,17 @@ let content = `---
 * npm install -g nodeppt
 * nodeppt start -p 9999 -d \`target_dir\`
 
-### 目录`;
+#### 目录`;
 let footer = `
 
-###Email
+####Email
 * [321jiangtao#gmail.com](mailto:321jiangtao@gmail.com)
-###反馈
+
+####反馈
 * 欢迎提[issues](https://github.com/jtHwong/shares/issues)
+
+####TODO
+* [TODO](TODO.md)
 `;
 let infoList = targetList.split('\r\n').filter((item) => item.length != 0 );
 let len = infoList.length;
