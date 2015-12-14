@@ -15,8 +15,10 @@ let content = `---
 ### 目录`;
 let footer = `
 
-###Contact
-[321jiangtao#gmail.com](mailto:321jiangtao@gmail.com)
+###Email
+* [321jiangtao#gmail.com](mailto:321jiangtao@gmail.com)
+###反馈
+* 欢迎提[issues](https://github.com/jtHwong/shares/issues)
 `;
 let infoList = targetList.split('\r\n').filter((item) => item.length != 0 );
 let len = infoList.length;
