@@ -3,6 +3,8 @@
  */
 'use strict';
 
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _base = require('./base');
@@ -16,23 +18,24 @@ var _path = require('path');
 var _path2 = _interopRequireDefault(_path);
 
 function asyncReadFile() {
-    var f1, f2;
+    var p1, p2, _ref, _ref2, f1, f2;
+
     return regeneratorRuntime.async(function asyncReadFile$(context$1$0) {
         while (1) switch (context$1$0.prev = context$1$0.next) {
             case 0:
-                context$1$0.next = 2;
-                return regeneratorRuntime.awrap((0, _base.readFile)(_path2['default'].join(__dirname, '../data/file1.txt')));
+                p1 = (0, _base.readFile)(_path2['default'].join(__dirname, '../data/file1.txt'));
+                p2 = (0, _base.readFile)(_path2['default'].join(__dirname, '../data/file2.txt'));
+                context$1$0.next = 4;
+                return regeneratorRuntime.awrap(Promise.all([p1, p2]));
 
-            case 2:
-                f1 = context$1$0.sent;
-                context$1$0.next = 5;
-                return regeneratorRuntime.awrap((0, _base.readFile)(_path2['default'].join(__dirname, '../data/file2.txt')));
-
-            case 5:
-                f2 = context$1$0.sent;
+            case 4:
+                _ref = context$1$0.sent;
+                _ref2 = _slicedToArray(_ref, 2);
+                f1 = _ref2[0];
+                f2 = _ref2[1];
                 return context$1$0.abrupt('return', f1.toString() + '\n' + f2.toString());
 
-            case 7:
+            case 9:
             case 'end':
                 return context$1$0.stop();
         }
@@ -124,28 +127,28 @@ function asyncReadFile2() {
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
         while (1) switch (context$1$0.prev = context$1$0.next) {
             case 0:
-                context$1$0.prev = 0;
                 context$1$0.t0 = console;
-                context$1$0.next = 4;
-                return regeneratorRuntime.awrap(asyncReadFile2());
+                context$1$0.next = 3;
+                return regeneratorRuntime.awrap(asyncReadFile());
 
-            case 4:
+            case 3:
                 context$1$0.t1 = context$1$0.sent;
                 context$1$0.t0.log.call(context$1$0.t0, context$1$0.t1);
-                context$1$0.next = 11;
-                break;
 
-            case 8:
-                context$1$0.prev = 8;
-                context$1$0.t2 = context$1$0['catch'](0);
-
-                console.log(context$1$0.t2.message);
-
-            case 11:
+            case 5:
             case 'end':
                 return context$1$0.stop();
         }
-    }, null, this, [[0, 8]]);
+    }, null, this);
 })();
 
-//console.log(await asyncReadFile())
+// f1读完 再读f2
+//var f1 = await readFile(path.join(__dirname, '../data/file1.txt'));
+//var f2 = await readFile(path.join(__dirname, '../data/file2.txt'));
+
+//try {
+//    console.log(await asyncReadFile2())
+//
+//}catch(e){
+//    console.log(e.message)
+//}

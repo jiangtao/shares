@@ -5,8 +5,12 @@ import {readFile, readdir} from './base';
 import fs from 'fs';
 import path from 'path';
 async function asyncReadFile() {
-    var f1 = await readFile(path.join(__dirname, '../data/file1.txt'));
-    var f2 = await readFile(path.join(__dirname, '../data/file2.txt'));
+    // f1读完 再读f2
+    //var f1 = await readFile(path.join(__dirname, '../data/file1.txt'));
+    //var f2 = await readFile(path.join(__dirname, '../data/file2.txt'));
+    var p1 = readFile(path.join(__dirname, '../data/file1.txt'));
+    var p2 = readFile(path.join(__dirname, '../data/file2.txt'));
+    var [f1, f2] = await Promise.all([p1, p2]);
     return `${f1.toString()}\n${f2.toString()}`;
 }
 async function asyncReadFile2() {
@@ -19,11 +23,11 @@ async function asyncReadFile2() {
     return a.join('\n');
 }
 (async function () {
-    //console.log(await asyncReadFile())
-    try {
-        console.log(await asyncReadFile2())
-
-    }catch(e){
-        console.log(e.message)
-    }
+    console.log(await asyncReadFile());
+    //try {
+    //    console.log(await asyncReadFile2())
+    //
+    //}catch(e){
+    //    console.log(e.message)
+    //}
 })();
