@@ -6,6 +6,7 @@ let gen = function* () {
     return true;
 };
 
+
 let execute = gen();
 let pF1 = execute.next().value;
 let pF2 = execute.next().value;

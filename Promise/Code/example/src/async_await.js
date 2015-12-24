@@ -12,14 +12,11 @@ async function asyncReadFile() {
 async function asyncReadFile2() {
     var target = '../data/';
     var files = await readdir(target);
-    //var a = [];
-    //for(const f of files){
-    //    a.push(await readFile(path.join(__dirname, target, f)));
-    //}
-    //return a.join('\n');
-    return files.map(function(f){
-       return await readFile(path.join(__dirname, target, f))
-    });
+    var a = [];
+    for(let f of files){
+        a.push(await readFile(path.join(__dirname, target, f)));
+    }
+    return a.join('\n');
 }
 (async function () {
     //console.log(await asyncReadFile())
