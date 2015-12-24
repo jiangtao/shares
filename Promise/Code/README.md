@@ -1,10 +1,14 @@
 #ES7 async/await小试
 
+最近在看[thinkjs](https://thinkjs.org)的一些文档和源码，其中解决异步编程的主要方法通过async/await。
+<!--more-->
 ## async/await的作用
 
-## 使用async/await组织代码
+## lamda(箭头)函数对async/await的影响
 
-## async/await中的错误
+## async/await中的错误处理
+
+## 使用async/await组织代码
 
 ## Q & A
 如何解决多重promise的问题
