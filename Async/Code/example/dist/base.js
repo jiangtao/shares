@@ -1,39 +1,19 @@
-'use strict';
+'use strict';exports.__esModule = true;exports.readdir = exports.readFile = undefined;var _fs = require('fs');var _fs2 = _interopRequireDefault(_fs);var _path = require('path');var _path2 = _interopRequireDefault(_path);var _babelPolyfill = require('babel-polyfill');var _babelPolyfill2 = _interopRequireDefault(_babelPolyfill);var _register = require('babel-core/register');var _register2 = _interopRequireDefault(_register);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _fs = require('fs');
 
-var _fs2 = _interopRequireDefault(_fs);
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
-var _babelCoreRegister = require('babel-core/register');
-
-var _babelCoreRegister2 = _interopRequireDefault(_babelCoreRegister);
-
-var readFile = function readFile(fileName) {
+var readFile = exports.readFile = function readFile(fileName) {
     return new Promise(function (resolve, reject) {
-        _fs2['default'].readFile(fileName, function (err, data) {
+        _fs2.default.readFile(fileName, function (err, data) {
             if (err) reject(err);
-            resolve(data);
-        });
-    });
-};
+            resolve(data);});});};
 
-exports.readFile = readFile;
-var readdir = function readdir(folder) {
+
+
+
+var readdir = exports.readdir = function readdir(folder) {
     return new Promise(function (resolve, reject) {
-        _fs2['default'].readdir(_path2['default'].resolve(__dirname, folder), function (err, files) {
+        _fs2.default.readdir(_path2.default.resolve(__dirname, folder), function (err, files) {
             if (err) reject(err);
-            resolve(files);
-        });
-    });
-};
-exports.readdir = readdir;
+            resolve(files);});});};
