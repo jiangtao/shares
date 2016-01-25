@@ -1,7 +1,7 @@
 import {readFile, readdir} from './base';
 import path from 'path';
 let gen = function* () {
-    yield readFile(path.join(__dirname, '../data/file404.txt'));
+    yield readFile(path.join(__dirname, '../data/file1.txt'));
     yield readFile(path.join(__dirname, '../data/file2.txt'));
     return true;
 };
