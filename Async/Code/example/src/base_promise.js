@@ -3,7 +3,12 @@ import path from 'path';
 import babelPolyfill from 'babel-polyfill';
 import babelRegister from 'babel-core/register';
 
-export let readFile = fileName => {
+/**
+ * @description read file
+ * @param fileName
+ * @returns {Promise}
+ */
+export const readFile = fileName => {
     return new Promise((resolve, reject) => {
         fs.readFile(fileName, (err, data) => {
             if (err) reject(err);
@@ -11,8 +16,12 @@ export let readFile = fileName => {
         })
     });
 };
-
-export let readdir = (folder) => {
+/**
+ * @description read dir
+ * @param folder
+ * @returns {Promise}
+ */
+export const readdir = (folder) => {
     return new Promise((resolve, reject) => {
         fs.readdir(path.resolve(__dirname, folder), (err, files) => {
             if (err) reject(err);
