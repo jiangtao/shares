@@ -19,9 +19,6 @@ let footer = `
 #####Email
 * [321jiangtao#gmail.com](mailto:321jiangtao@gmail.com)
 
-#####反馈
-* 欢迎提[issues](https://github.com/jtHwong/shares/issues)
-
 #####TODO
 * [Todo List](TODO.md)
 `;
@@ -45,7 +42,7 @@ if (len % 2 == 0) {
         execSync(`nodeppt generate ${ match[0] }  -a -o ./doc`);
         console.log('nodeppt doc generate successfully');
         // generate dir
-        content += `\n* [${ match[1].trim() }](${ getInfo(infoList[i + 1])[1].trim() })`;
+        content += `\n* [${ match[1].trim() }](${ getInfo(infoList[i + 1])[1].trim() }){:target="_blank"}`;
         i = 2 * ++i;
     }
 } else {
