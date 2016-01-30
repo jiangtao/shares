@@ -1,23 +1,18 @@
-import {readFile, readdir} from './base';
+import {readFile, readdir} from './pack_promise.js';
 import path from 'path';
+import babelBase from './babel_base.js';
+import co from 'co';
 let gen = function* () {
-    yield readFile(path.join(__dirname, '../data/file1.txt'));
-    yield readFile(path.join(__dirname, '../data/file2.txt'));
-    return true;
+    var f1 = yield readFile(path.join(__dirname, '../data/file1.txt'));
+    var f2 = yield readFile(path.join(__dirname, '../data/file2.txt'));
+    //var errorFile = yield readFile(path.join(__dirname, '../data/file5.txt'));
+    return `${f1.toString()}\r\n${f2.toString()}`;
 };
 
-
-let execute = gen();
-let pF1 = execute.next().value;
-let pF2 = execute.next().value;
-pF1.then(function (data) {
-    console.log('f1', data.toString());
-}).catch(function (err) {
-    console.log('f1', err);
-}).then(function () {
-    return pF2;
-}).then(function (data) {
-    console.log('f2', data.toString());
-}).catch(function (err) {
-    console.log('f2', err);
+co(gen).then(function (data) {
+    console.log(data);
+}).catch(function (e) {
+    console.log(e);
 });
+
+

@@ -1,5 +1,6 @@
-import {readFile, readdir} from './base';
+import {readFile, readdir} from './pack_promise.js';
 import path from 'path';
+import babelBase from './babel_base.js';
 let gen = function* () {
     yield readFile(path.join(__dirname, '../data/file1.txt'));
     yield readFile(path.join(__dirname, '../data/file2.txt'));

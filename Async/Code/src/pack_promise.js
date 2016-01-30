@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import babelPolyfill from 'babel-polyfill';
-import babelRegister from 'babel-core/register';
+import babelBase from './babel_base';
 
 /**
  * @description read file
