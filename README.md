@@ -9,8 +9,5 @@
 #####Email
 * [321jiangtao#gmail.com](mailto:321jiangtao@gmail.com)
 
-#####反馈
-* 欢迎提[issues](https://github.com/jtHwong/shares/issues)
-
 #####TODO
 * [Todo List](TODO.md)
