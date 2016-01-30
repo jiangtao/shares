@@ -1,7 +1,7 @@
 {
   "name": "shares",
   "version": "0.1.0",
-  "description": "",
+  "description": "--- ##关于前端的一些总结和分享 * npm install -g nodeppt * nodeppt start -p 9999 -d `target_dir`",
   "main": "index.js",
   "scripts": {
     "es67workflow": "nodeppt start -d  es67workflow/ppt -p 9900",
@@ -24,6 +24,12 @@
     "url": "https://github.com/jtHwong/shares/issues"
   },
   "homepage": "https://github.com/jtHwong/shares#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "babel": "^6.3.26",
+    "babel-cli": "^6.4.5"
+  },
+  "directories": {
+    "doc": "doc"
   }
 }
