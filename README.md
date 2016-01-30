@@ -3,7 +3,7 @@
 * npm install -g nodeppt
 * nodeppt start -p 9999 -d `target_dir`
 
-#### 目录
+#### 传送门
 * [异步编程小结](test)
 * [搭建ES6/7工作流搭建](http://jthwong.github.io/shares/doc/es67workflow.htm)
 

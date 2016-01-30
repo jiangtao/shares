@@ -12,7 +12,7 @@ let content = `---
 * npm install -g nodeppt
 * nodeppt start -p 9999 -d \`target_dir\`
 
-#### 目录`;
+#### 传送门`;
 let footer = `
 
 #####Email
