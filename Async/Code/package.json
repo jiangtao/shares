@@ -15,7 +15,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel --presets es2015-loose,stage-1 example/src/ --out-dir example/dist/ --retain-lines"
+    "compile": "babel --presets es2015-loose,stage-1 src/ --out-dir dist/ --retain-lines",
+    "watch-compile": "npm run compile -- -w"
   },
   "keywords": [
     "promise",

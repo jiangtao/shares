@@ -1,7 +1,7 @@
 /**
  * Created by jiangtao on 12/9/15.
  */
-import {readFile, readdir} from './base_promise';
+import {readFile, readdir} from './pack_promise';
 import fs from 'fs';
 import path from 'path';
 async function asyncReadFile() {
