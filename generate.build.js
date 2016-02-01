@@ -17,7 +17,7 @@ let content = `---
 let footer = `
 
 #####Email
-* [321jiangtao#gmail.com](mailto:321jiangtao@gmail.com)
+* [321jiangtao@gmail.com](mailto:321jiangtao@gmail.com)
 
 #####TODO
 * [Todo List](TODO.md)
