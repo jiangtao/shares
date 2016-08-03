@@ -4,5 +4,4 @@
 - [x] 每次发布完, 生成新的README.md作为目录文件
 - [x] 搭建静态blog，记录总结文章
 - [x] 异步编程
-- [ ] thinkjs学习及实现TODO
-- [ ] 开发自己的blog
+- [x] thinkjs实现[Android更新系统](https://github.com/Jerret321/Android-Update)
