@@ -67,20 +67,24 @@ files: /css/moon.css,/img
 
 [slide]
 
-## 使用 nunjucks
+## 纯html界面使用 nunjucks
 - 需要一些强大的helpers来处理
 - 需要一定模板继承，复用和宏的支持 来面对比较复杂的页面处理
 - 不用Plug(jade)的原因， 我们是前端开发者，jade虽然干净，但对我司好多人来讲容易犯错， 也没必要为了这个去适应很多
 - 当然还有一些比较优秀的template， 比如ejs， artTemplate， xTemplate等等
 
-## 部分交互过重， 过复杂的page使用vue来代替
-- 内部有很多交互过于复杂，选择vue的原因很重要的是 相对于 react 较团队成员，上手快，学习成本低
+[slide]
 
+## 交互略重界面使用vue
+- 内部界面有很多交互过于复杂
+- 相对react, 团队成员，上手快，学习成本低
 
 [slide]
+
 ##参考资料
 -  <a href="http://webpack.github.io/">thinkjs官方网站</a>
 -  <a href="https://github.com/75team/thinkjs/issues">thinkjs issues</a>
 -  <a href="https://www.imjiangtao.com/post/async-summary.html">异步编程小结</a>
 -  <a href="https://cn.vuejs.org/">vue中文文档</a>
+
 [slide]

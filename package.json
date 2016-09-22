@@ -6,6 +6,8 @@
   "scripts": {
     "es67workflow": "nodeppt start -d  es67workflow/ppt -p 9900",
     "generate": "./generate.build.js",
+    "push": "npm run deploy && npm run git-push $1",
+    "git-push": "git add -A  && git commit -m $1 && ggpush",
     "deploy": "babel generate.js -o generate.build.js && npm run generate"
   },
   "repository": {
