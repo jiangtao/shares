@@ -35,7 +35,7 @@ let getInfo = str => {
 		return str.split(urlMark);
 	}
 };
-console.log(len, infoList);
+
 if (len % 2 == 0) {
 	for (let i = 0; i < len;) {
 

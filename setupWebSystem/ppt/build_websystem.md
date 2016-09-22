@@ -1,6 +1,6 @@
 title: 搭建一个前端的web系统
 speaker: 江涛
-url: http://Jerret321.github.io/shares/doc/build_websystem.htm
+url: http://Jerret321.github.io/shares/publish/build_websystem.htm
 transition: card
 files: /css/demo.css,/img
 
@@ -14,7 +14,7 @@ files: /css/demo.css,/img
 # 背景
 
 > 自13年以来，前端变化迅速，主要体验下以下技术的发展
-- Node (各种框架百花齐放： express, koa, meteor, )
+- Node (各种框架百花齐放： express, koa, meteor, egg, ...)
 - MV*
 - Javascript本身的发展 
 - Webpack
