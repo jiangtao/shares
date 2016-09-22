@@ -1,8 +1,8 @@
 title: 搭建一个前端的web系统
 speaker: 江涛
 url: http://Jerret321.github.io/shares/publish/build_websystem.htm
-transition: card
-files: /css/demo.css,/img
+transition: slide3
+files: /css/moon.css,/img
 
 [slide]
 
@@ -15,14 +15,13 @@ files: /css/demo.css,/img
 
 > 自13年以来，前端变化迅速，主要体验下以下技术的发展
 - Node (各种框架百花齐放： express, koa, meteor, egg, ...)
-- MV*
+- MV-
 - Javascript本身的发展 
 - Webpack
 
 [slide]
 
 # 如何选择框架， 再开源的基础上更好的完成开发，基于以下几点
-
 - 团队
 - 框架本身
 - 业务
@@ -30,7 +29,6 @@ files: /css/demo.css,/img
 [slide]
 
 ## 团队
-
 - 组织架构 (部分公司是木有所谓的全栈职位， 以及node 或从其他岗位转型)
 - 团队能力 (主要学习力, 包含英语阅读能力， 理解能力)
 
@@ -49,14 +47,12 @@ files: /css/demo.css,/img
 [slide]
 
 ## 业务
-
 - 场景是否适合 (复杂度， 便利性, 兼容性)
 - 开发时间
 
 [slide]
 
 # 后端为什么选择thinkjs
-
 - npm强大的生态光环之下 
 - 对于我们来说 大伙熟悉thinkphp， thinkjs很多理念参考 thinkphp的，可快上手
 - 开发环境集成，不用费过多的时间去集成 
@@ -70,26 +66,19 @@ files: /css/demo.css,/img
 # 前端处理和选型
 
 ## 展示类型选择html 使用 nunjucks代替 handlebars
-
 - 需要一些强大的helpers来处理
 - 需要一定模板继承，复用和宏的支持 来面对比较复杂的页面处理
 - 不用Plug(jade)的原因， 我们是前端开发者，jade虽然干净，但对我司好多人来讲容易犯错， 也没必要为了这个去适应很多
 - 当然还有一些比较优秀的template， 比如ejs， artTemplate， xTemplate等等
 
 ## 部分交互过重， 过复杂的page使用vue来代替
-
-- 内部有很多交互过于复杂，选择vue的原因很重要的是 相对于 react 需求宜满足， 成本相对来说低一些
+- 内部有很多交互过于复杂，选择vue的原因很重要的是 相对于 react 较团队成员，上手快，学习成本低
 
 
 [slide]
 # 参考资料
-
-*  <a href="http://webpack.github.io/">thinkjs官方网站</a>
-*  <a href="https://github.com/75team/thinkjs/issues">thinkjs issues</a>
-*  <a href="https://www.imjiangtao.com/post/async-summary.html">异步编程小结</a>
-*  <a href="https://cn.vuejs.org/">vue中文文档</a>
-
+-  <a href="http://webpack.github.io/">thinkjs官方网站</a>
+-  <a href="https://github.com/75team/thinkjs/issues">thinkjs issues</a>
+-  <a href="https://www.imjiangtao.com/post/async-summary.html">异步编程小结</a>
+-  <a href="https://cn.vuejs.org/">vue中文文档</a>
 [slide]
-# 参考资料：
-* Email: <a href="javascript: void 0">321jiangtao@gmail.com</a>
-* Slide: <a href="http://jthwong.github.io/shares/doc/es67workflow.htm">搭建一个前端的web系统</a>

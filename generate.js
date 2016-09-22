@@ -41,12 +41,11 @@ if (len % 2 == 0) {
 		var match = getInfo(infoList[i])
 		var doc = match[0]
 		execSync(`nodeppt generate ${doc}  -a ./doc`)
-		console.log(`${doc} ::: nodeppt doc generate successfully`)
+		console.log()
+		console.log(`${blue(doc)} nodeppt doc generate successfully`)
 		// generate dir
-		console.log(match[0], match[1])
 		content += `\n* [${ match[1].trim() }](${ getInfo(infoList[i + 1])[1].trim() })`
 		i += 2
-		console.log(i)
 	}
 } else {
 	console.warn('please check your infoList title url')
@@ -55,5 +54,9 @@ content += footer
 
 fs.writeFile('./README.md', content, {encoding: 'utf8'}, (err) => {
 	if (err) throw err
-	console.log('README.md generate successfully')
+	console.log()
 })
+
+function blue (str) {
+	return '\x1b[1m\x1b[34m' + str + '\x1b[39m\x1b[22m'
+}
