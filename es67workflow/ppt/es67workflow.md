@@ -1,6 +1,6 @@
 title: 搭建ES6/7工作流搭建
 speaker: 江涛
-url: http://jthwong.github.io/shares/doc/es67workflow.htm
+url: http://Jerret321.github.io/shares/doc/es67workflow.htm
 transition: card
 files: /css/zhufeng.css,/img
 
