@@ -6,12 +6,12 @@ files: /css/moon.css,/img
 
 [slide]
 
-# 使用前端技术快速搭建一个稳定web system
+##使用前端技术快速搭建一个稳定web system
 ## 分享人：江涛 
 
 [slide]
 
-# 背景
+##背景
 
 > 自13年以来，前端变化迅速，主要体验下以下技术的发展
 - Node (各种框架百花齐放： express, koa, meteor, egg, ...)
@@ -21,7 +21,7 @@ files: /css/moon.css,/img
 
 [slide]
 
-# 如何选择框架， 再开源的基础上更好的完成开发，基于以下几点
+##如何选择框架， 再开源的基础上更好的完成开发，基于以下几点
 - 团队
 - 框架本身
 - 业务
@@ -52,7 +52,7 @@ files: /css/moon.css,/img
 
 [slide]
 
-# 后端为什么选择thinkjs
+##后端为什么选择thinkjs
 - npm强大的生态光环之下 
 - 对于我们来说 大伙熟悉thinkphp， thinkjs很多理念参考 thinkphp的，可快上手
 - 开发环境集成，不用费过多的时间去集成 
@@ -63,7 +63,7 @@ files: /css/moon.css,/img
 
 [slide]
 
-# 前端处理和选型
+##前端处理和选型
 
 ## 展示类型选择html 使用 nunjucks代替 handlebars
 - 需要一些强大的helpers来处理
@@ -76,7 +76,7 @@ files: /css/moon.css,/img
 
 
 [slide]
-# 参考资料
+##参考资料
 -  <a href="http://webpack.github.io/">thinkjs官方网站</a>
 -  <a href="https://github.com/75team/thinkjs/issues">thinkjs issues</a>
 -  <a href="https://www.imjiangtao.com/post/async-summary.html">异步编程小结</a>
