@@ -6,3 +6,4 @@
 - [x] 异步编程
 - [x] thinkjs实现[Android更新系统](https://github.com/Jerret321/Android-Update)
 - [x] markdown快速生成vue SPA
+- [x] weex开发初试
