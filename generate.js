@@ -8,17 +8,14 @@ const execSync = child_process.execSync
 
 let targetList = execSync(shell_target, {encoding: 'utf8'})
 let content = `---
-##关于前端的一些总结和分享
+## 关于前端的一些总结和分享
 * npm install -g nodeppt
 * nodeppt start -p 9999 -d \`target_dir\`
 
 #### 传送门`
 let footer = `
 
-#####Email
-* [321jiangtao@gmail.com](mailto:321jiangtao@gmail.com)
-
-#####TODO
+##### TODO
 * [Todo List](TODO.md)
 `
 
@@ -30,14 +27,14 @@ let getInfo = (str) => {
 	if (titleMark.test(str)) {
 		return str.split(titleMark)
 	} else if (urlMark.test(str)) {
-		
+
 		return str.split(urlMark)
 	}
 }
 
 if (len % 2 == 0) {
 	for (let i = 0; i < len;) {
-		
+
 		var match = getInfo(infoList[i])
 		var doc = match[0]
 		execSync(`nodeppt generate ${doc}  -a ./doc`)
