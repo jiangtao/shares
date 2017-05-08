@@ -33,5 +33,7 @@ Temporary Items
 # node
 node_modules
 
+# private
 
-node_modules/
+build-history
+fe-engineering

@@ -4,10 +4,10 @@
   "description": "--- ##关于前端的一些总结和分享 * npm install -g nodeppt * nodeppt start -p 9999 -d `target_dir`",
   "main": "index.js",
   "scripts": {
-    "preview": "nodeppt start -d  $1/ppt -p 9900",
-    "generate": "./generate.js",
-    "deploy": "npm run generate && npm run git-push $1",
-    "git-push": "git add -A  && git commit -m '$1' && git push"
+    "es67-workflow": "nodeppt start -d  es67-workflow/ppt -p 9900",
+    "buid-history": "nodeppt start -d  build-history/ppt -p 9901",
+    "fe-engineering": "nodeppt start -d  build-history/ppt -p 9902",
+    "generate": "./generate.js"
   },
   "repository": {
     "type": "git",

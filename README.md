@@ -4,9 +4,9 @@
 * nodeppt start -p 9999 -d `target_dir`
 
 #### 传送门
-* [Android apk管理和自动更新](https://github.com/Jerret321/Android-Update)
+* [Android apk管理和自动更新](https://github.com/jiangtao/Android-Update)
 * [异步编程小结](https://www.imjiangtao.com/post/async-summary.html)
-* [搭建ES6/7工作流搭建](http://Jerret321.github.io/shares/publish/es67workflow.htm)
+* [搭建ES6/7工作流搭建](http://jiangtao.github.io/shares/publish/es67-workflow.htm)
 
 #####Email
 * [321jiangtao@gmail.com](mailto:321jiangtao@gmail.com)
