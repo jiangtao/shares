@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jtHwong/shares.git"
+    "url": "git+https://github.com/jiangtao/shares.git"
   },
   "keywords": [
     "shares",
@@ -22,9 +22,9 @@
   "author": "321jiangtao@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jtHwong/shares/issues"
+    "url": "https://github.com/jiangtao/shares/issues"
   },
-  "homepage": "https://github.com/jtHwong/shares#readme",
+  "homepage": "https://github.com/jiangtao/shares#readme",
   "devDependencies": {},
   "dependencies": {
     "babel": "^6.3.26",

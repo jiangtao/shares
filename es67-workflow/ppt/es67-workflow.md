@@ -367,4 +367,4 @@ export default webpackConfig;
 [slide]
 # Q & A
 * Email: <a href="javascript: void 0">321jiangtao@gmail.com</a>
-* Slide: <a href="http://jthwong.github.io/shares/doc/es67workflow.htm">搭建ES6/7工作流搭建</a>
+* Slide: <a href="http://jiangtao.github.io/shares/doc/es67workflow.htm">搭建ES6/7工作流搭建</a>
